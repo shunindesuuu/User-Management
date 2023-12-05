@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  color: rgb(var(--foreground-rgb));
+  padding: 1rem;
+}
