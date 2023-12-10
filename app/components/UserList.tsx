@@ -61,41 +61,56 @@ const UserList = () => {
             console.log("Error:", error);
         }
     }
+    const UserList = () => {
+        const [users, setUsers] = useState<User[]>([]);
+        const [userId, setUserId] = useState(0);
+
+        useEffect(() => {
+            initializeUsers();
+        }, []);
+
+        const initializeUsers = async () => {
+            const userResponse = await axios.get('/api/users');
+            setUsers(userResponse.data);
+        }
+    }
 
     return (
         <div className='container mx-auto p-4 shadow-md border rounded-lg'>
             <div className='flex justify-between'>
-                <h1 className='font-bold text-2xl'>User Management</h1>
+                <h1 className='font-bold text-3xl'>User Management</h1>
                 <button className='btn btn-primary' onClick={openNewUser}>Create New User</button>
             </div>
-
-            <table className='table mt-4'>
-                <thead>
-                    <tr>
-                        <th className='text-red-500'>ID</th>
-                        <th className='text-red-500'>Name</th>
-                        <th className='text-red-500'>Age</th>
-                        <th className='text-red-500'>Email</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user =>
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.age}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                <button className='mx-2 btn btn-primary' onClick={() => openViewUser(user.id)}>View</button>
-                                <button className='mx-2 btn btn-primary' onClick={() => openEditUser(user.id)}>Edit</button>
-                                <button className='mx-2 btn btn-error text-black' onClick={() => openDeleteUser(user.id)}>Delete</button>
-                            </td>
+            {users.length === 0 ? (
+                <h3 className='font-bold  text-2xl text-red-500 flex flex-col justify-center items-center'>No Users Found</h3>
+            ) : (
+                <table className='table mt-4'>
+                    <thead>
+                        <tr>
+                            <th className='text-red-500'>ID</th>
+                            <th className='text-red-500'>Name</th>
+                            <th className='text-red-500'>Age</th>
+                            <th className='text-red-500'>Email</th>
+                            <th></th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+                        {users.map(user =>
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.age}</td>
+                                <td>{user.email}</td>
+                                <td>
+                                    <button className='mx-2 btn btn-primary' onClick={() => openViewUser(user.id)}>View</button>
+                                    <button className='mx-2 btn btn-primary' onClick={() => openEditUser(user.id)}>Edit</button>
+                                    <button className='mx-2 btn btn-error text-black' onClick={() => openDeleteUser(user.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            )}
             <dialog id='viewModal' className='modal'>
                 <div className='modal-box'>
                     <form method='dialog'>

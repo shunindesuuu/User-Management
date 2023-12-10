@@ -41,11 +41,15 @@ const UserForm = ({ id, onUserUpdate }: Props) => {
         data.id = id;
         const isSuccess = await onUserUpdate(data);
         if (isSuccess) {
-            (document.getElementById('userModal') as HTMLDialogElement).close();
+            const userModal = document.getElementById('userModal') as HTMLDialogElement | null;
+            if (userModal) {
+                userModal.close();
+            }
             setNeedFetch(true);
             reset();
         }
     };
+    
 
 
     return (
