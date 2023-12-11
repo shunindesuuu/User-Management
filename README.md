@@ -1,5 +1,36 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Prisma ORM, SQLite, and TailwindCSS were used for this project
+
+##Installation
+
+For NextJS
+```bash
+npx create-next-app@latest
+```
+
+For Prisma ORM
+```bash
+npm i prisma 
+npx prisma init 
+npx prisma migrate dev  
+```
+
+DaisyUI
+```bash
+npm i -D daisyui@latest  
+```
+
+Libraries
+```bash
+npm i axios  
+npm i react-hook-form  
+npm install jest axios
+npm install --save-dev @testing-library/jest-dom  
+npm install --save-dev @testing-library/user-event
+```
+
+
 ## Getting Started
 
 First, run the development server:
