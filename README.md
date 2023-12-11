@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Prisma ORM, SQLite, and TailwindCSS were used for this project
 
-##Installation
+## Installation
 
 For NextJS
 ```bash
